@@ -1,0 +1,22 @@
+{
+  "name": "sammy-api",
+  "version": "1.0.0",
+  "description": "Essa lib é usada para consumir arquitetura modular no Next.js, tanto em client ou server side.",
+  "license": "ISC",
+  "author": "Rafael Aparecido da Silva",
+  "type": "module",
+  "types": "./dist/index.d.ts",
+  "main": "./dist/index.js",
+  "scripts": {
+    "dev": "node --experimental-strip-types --experimental-transform-types src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "dependencies": {
+    "typescript": "^5.7.2",
+    "z": "^1.0.1",
+    "zod": "^3.24.1"
+  }
+}

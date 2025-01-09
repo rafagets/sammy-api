@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist",          // Pasta onde o código transpilado será salvo
+    "declaration": true,         // Gera os arquivos .d.ts (declaração de tipos)
+    "declarationMap": true,      // (Opcional) Mapa de declarações para debugging
+    "moduleResolution": "node",  // Resolve módulos do Node.js
+    "target": "ES2024",          // Alvo de transpiração
+    "module": "ESNext",          // Tipo de módulo (ESM)
+    "strict": true,              // Habilita verificações estritas
+    "esModuleInterop": true,     // Permite importações padrão
+    "skipLibCheck": true         // Ignora verificação de tipos de libs (opcional)
+  },
+  "include": ["src/**/*"],        // Inclui todos os arquivos em `src/`
+  "exclude": ["node_modules"]     // Exclui node_modules
+}

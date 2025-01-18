@@ -1,0 +1,1 @@
+{"version":3,"file":"createServer.d.ts","sourceRoot":"","sources":["../src/createServer.ts"],"names":[],"mappings":"AAEA,OAAO,CAAC,MAAM,CAAC;IACb,IAAI,KAAK,EAAE,GAAG,CAAC;CAChB;AAgCD,wBAAsB,YAAY,CAAC,QAAQ,EACzC,OAAO,EAAE,QAAQ,EACjB,GAAG,CAAC,SAAS,EAAE,MAAM,EAAE,IAAI,CAAC,EAAE,GAAG,GAChC,OAAO,CAAC,GAAG,CAAC,CAYd"}

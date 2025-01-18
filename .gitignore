@@ -1,9 +1,9 @@
 # Dependências
 /node_modules
 
-# Builds
-/dist
-/build
+# # Builds
+# /dist
+# /build
 
 # Logs
 npm-debug.log*

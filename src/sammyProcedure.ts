@@ -44,7 +44,14 @@ export class SammyProcedure<T extends ZodTypeAny, Y> {
         validatedInput = input;
       }
 
-      return await callback(validatedInput as any, this.currentUser || {} as Y);
+      try {
+        return await callback(validatedInput as any, this.currentUser || {} as Y);
+      } catch (e: any) {
+        return SammyResponse.error(
+          'Tivemos um problema, Tente novamente',
+          e?.message,
+        );
+      }
     };
   }
 }

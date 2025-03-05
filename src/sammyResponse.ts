@@ -1,14 +1,16 @@
 interface Props<T> {
+  isSuccess?: boolean;
   message: string;
-  content?: T;
+  content: T;
   title?: string;
   action?: string;
 }
 
 export interface PropsResult<T> {
+  isSuccess?: boolean;
   type: TType;
   message: string;
-  content?: T;
+  content: T;
   title?: string;
   action?: string;
 }
@@ -18,15 +20,17 @@ export type TType = 'success' | 'error' | 'warning' | 'info';
 export type SammyResponseDto<T> = Promise<PropsResult<T>>;
 
 class ResponseModel<T> implements PropsResult<T> {
+  isSuccess?: boolean;
   type: TType;
   message: string;
-  content?: T | undefined;
+  content: T;
   title?: string | undefined;
   action?: string | undefined;
   constructor(type: TType, props: Props<T>) {
+    this.isSuccess = props.isSuccess;
     this.type = type;
     this.message = props.message;
-    this.content = props.content;
+    this.content = props.content || '' as T;
     this.title = props.title;
     this.action = props.action;
   }
@@ -38,6 +42,7 @@ export class SammyResponse {
       props = {
         message: props,
         content: value,
+        isSuccess: true,
       } as any;
     }
     // verifica se a props é um objeto padrao de resposta ou é um conteudo direto
@@ -45,20 +50,27 @@ export class SammyResponse {
       props = {
         message: 'success',
         content: props as T,
+        isSuccess: true,
       } as any;
     }
     return new ResponseModel<T>('success', props as any);
   }
 
   public static error<T>(
-    props: (Props<T> & { httpError?: Error }) | string,
+    props: (Props<T> & { httpError?: Error }) | string | Error,
     value?: T
   ) {
     if (value instanceof ResponseModel) {
       return value;
     }
 
-    if (typeof props === 'string' && value instanceof Error) {
+    if (props instanceof Error) {
+      props = {
+        message: props.message,
+        content: 'error' as any,
+      };
+    }
+    else if (typeof props === 'string' && value instanceof Error) {
       props = {
         message: props,
         content: value.message as any,
@@ -67,7 +79,7 @@ export class SammyResponse {
     else if (typeof props === 'string') {
       props = {
         message: props,
-        content: value,
+        content: value || '' as T,
       };
     }
     return new ResponseModel<T>('error', props as any);
@@ -77,7 +89,8 @@ export class SammyResponse {
     if (typeof props === 'string') {
       props = {
         message: props,
-        content: value,
+        content: value || '' as T,
+        isSuccess: false,
       };
     }
     return new ResponseModel<T>('warning', props);
@@ -87,7 +100,8 @@ export class SammyResponse {
     if (typeof props === 'string') {
       props = {
         message: props,
-        content: value,
+        content: value || '' as T,
+        isSuccess: true,
       };
     }
     return new ResponseModel<T>('info', props);

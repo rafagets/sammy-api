@@ -1,6 +1,6 @@
 {
   "name": "sammy-api",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Essa lib é usada para consumir arquitetura modular no Next.js, tanto em client ou server side.",
   "license": "ISC",
   "author": "Rafael Aparecido da Silva",
